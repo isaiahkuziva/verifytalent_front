@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* theming tailwind css */
+/* color variable values are rgb values that are being handled in
+   tailwind.config.cjs via 'withOpacity' method
+*/
+@layer base {
+  :root {
+    font-size: 0.875rem;
+    overflow: hidden;
+    background-color: rgb(var(--color-fill-muted));
+
+    /* the numbers here are rgb values */
+    --color-text-base: 32, 33, 36;
+    --color-text-muted: 112, 117, 122;
+    --color-text-inverted: 23, 101, 140;
+
+    --color-fill: 255, 255, 250;
+    --color-fill-base: 237, 242, 246;
+    --color-fill-muted: 250, 250, 250;
+    --color-fill-inverted: 23, 101, 140;
+
+    /* --color-border-base: 237, 242, 246; */
+    --color-border-base: 224, 224, 224;
+    --color-border-muted: 250, 250, 250;
+    --color-border-inverted: 23, 101, 140;
+
+    --color-button-accent: 23, 101, 140;
+    --color-button-accent-hover: 23, 101, 140;
+    --color-button-accent-muted: 23, 101, 140;
+  }
+
+  .theme-dark {
+    background-color: rgb(var(--color-fill));
+    color: rgb(var(--color-text-base));
+
+    --color-text-base: 235, 235, 235;
+    --color-text-muted: 108, 117, 125;
+    --color-text-inverted: 255, 193, 7;
+
+    --color-fill: 25, 25, 35;
+    --color-fill-base: 108, 117, 125;
+    --color-fill-muted: 30, 30, 40;
+    --color-fill-inverted: 255, 193, 7;
+
+    --color-border-base: 115, 123, 139;
+    --color-border-muted: 108, 117, 125;
+    --color-border-inverted: 255, 193, 7;
+
+    --color-button-accent: 255, 193, 7;
+    --color-button-accent-hover: 255, 193, 7;
+    --color-button-accent-muted: 255, 193, 7;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  --color-scrollbar-b: white;
+}
+
+/* sidebar animation */
+@keyframes animateSidebar {
+  from {
+    width: 80px;
+    opacity: 0;
+  }
+  to {
+    width: 300px;
+    opacity: 1;
+  }
+}
+
+@keyframes animateMinSidebar {
+  from {
+    width: 300px;
+  }
+  to {
+    width: 80px;
+  }
+}
+
+/* animations for accordions on the sidebar */
+@keyframes animateLinklistClose {
+  from {
+    max-height: 300px;
+  }
+  to {
+    max-height: 0;
+  }
+}
+
+@keyframes animateLinklistOpen {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 1000px;
+  }
+}
+
+.sidebar-animation {
+  animation: animateSidebar 0.4s ease-in-out forwards;
+}
+
+.min-sidebar-animation {
+  animation: animateMinSidebar 0.4s ease-in-out forwards;
+}
+
+.close-linklist {
+  animation: animateLinklistClose 0.3s linear forwards;
+}
+
+.open-linklist {
+  animation: animateLinklistOpen 1s linear forwards;
+}
+
+.content-container {
+  margin: 0 auto;
+  width: 85%;
+}
+
+/* 
+disabling the use of smaller devices. 
+we believe it is more efficient to use dashboard apps on devices with bigger screens 
+*/
+@media (max-width: 639px) {
+  body {
+    position: relative;
+  }
+
+  body::after {
+    content: "We discourage using our dashboard webapps in smaller devices. We believe it is more efficient to use dashboard apps on devices with bigger screens. The minimum width size of your device should be at least 640px.";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    padding: 30px;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+  }
+}
